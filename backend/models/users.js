@@ -9,7 +9,6 @@ var userSchema = new mongoose.Schema(
     email: String,
     password: {
       type: String,
-      select: false,
     },
     tokens: [
       {
@@ -28,7 +27,9 @@ var userSchema = new mongoose.Schema(
 //Middleware before save
 userSchema.pre("save", function (next) {
   var salt = bcrypt.genSaltSync(10);
-  this.password = bcrypt.hashSync(this.password, salt);
+  if (this.password && this.isModified("password")) {
+    this.password = bcrypt.hashSync(this.password, salt);
+  }
   next();
 });
 
@@ -38,7 +39,7 @@ userSchema.methods.getAuthToken = async function (data) {
     email: this.email,
     phone: this.phone,
   };
-  var tokenValue = jwt.sign(params, process.env.JWTSECRETKEY);
+  var tokenValue = jwt.sign(params, process.env.JWTSECRETKEY,{expiresIn:"300000s"});
   this.tokens = this.tokens.concat({ token: tokenValue });
   await this.save();
   return tokenValue;
