@@ -8,6 +8,8 @@ const userList = async (req, res) => {
   res.json(data);
 };
 
+var user;
+
 const userAdd = async (req, res) => {
   let { name, email, phone, password } = req.body;
   let data = new Users({ name, email, phone, password });
@@ -27,7 +29,7 @@ const userLogin = async (req, res) => {
       .json({ message: "Error", message: "Please enter email/password" });
   }
 
-  let user = await Users.findOne({ email: req.body.email });
+  user = await Users.findOne({ email: req.body.email });
   var responseType = {
     message: "Ok",
   };
@@ -48,9 +50,16 @@ const userLogin = async (req, res) => {
 
   res.status(200).json({ message: "ok", data: responseType });
 };
+
+const userLogout =(req,res)=>{
+  // user.tokens = user.tokens.filter()
+  console.log(user)
+}
+
 // Exporting all the functions
 module.exports = {
   userList,
   userAdd,
   userLogin,
+  userLogout
 };

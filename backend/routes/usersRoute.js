@@ -45,4 +45,6 @@ route.get("/list",authenticateToken, userController.userList);
 
 route.post("/login", userController.userLogin);
 
+route.delete("/logout",userController.userLogout)
+
 module.exports = route;
