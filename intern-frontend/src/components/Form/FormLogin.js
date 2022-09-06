@@ -1,37 +1,54 @@
-import React from "react";
-import { Form, Button } from "react-bootstrap";
+import React, { useState } from "react";
 
 const FormLogin = () => {
+
+  
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+  };
+
   return (
-    <Form className="mt-8 w-50" fluid="md" style={{alignItems: "center",margin:"auto"}}>
-      <div className="">
-        <Form.Group className="mb-3 " controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
+    <form className="form-control row">
+      <div style={{ margin: "auto", width: "60%" }}>
+        <div className="form-group row">
+          <label htmlFor="email">Email address</label>
+          <input
+            type="email"
+            name="email"
+            className="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+          />
+          <small id="emailHelp" className="form-text text-muted">
             We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
-      </div>
+          </small>
+        </div>
+        <br></br>
 
-      <div className="">
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-      </div>
-      <div className="">
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-      </div>
+        <div className="form-group row">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            className="form-control"
+            id="password"
+            placeholder="Enter Confirm Password"
+          />
+        </div>
 
-      <div className="">
-        <Button variant="primary" type="submit">
+        <br></br>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onSubmit={submitHandler}
+        >
           Submit
-        </Button>
+        </button>
       </div>
-    </Form>
+    </form>
   );
 };
 
