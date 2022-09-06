@@ -9,7 +9,7 @@ import Registration from "../src/components/Registration";
 function App() {
   return (
     <div className="App">
-      <Button>He</Button>
+      
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/login" element={<Login />} />

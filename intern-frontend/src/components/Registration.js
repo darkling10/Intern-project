@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import FormRegistration from "../components/Form/FormRegistration";
+import NavbarUser from "./widget/Navbar";
 
 function Registration() {
   return (
-    <div>Registration</div>
-  )
+    <>
+      <NavbarUser />
+      <FormRegistration />
+    </>
+  );
 }
 
-export default Registration
+export default Registration;

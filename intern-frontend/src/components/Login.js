@@ -1,12 +1,15 @@
-import React from 'react'
+import React from "react";
+import FormLogin from "./Form/FormLogin";
+import { Card } from "react-bootstrap";
+import NavbarUser from "./widget/Navbar";
 
 function Login() {
   return (
-    <div>
-      <h1>Hiiiiiiiiiiii</h1>
-      {console.log("In login")}
-    </div>
-  )
+    <>
+      <NavbarUser />
+      <FormLogin />
+    </>
+  );
 }
 
-export default Login
+export default Login;
