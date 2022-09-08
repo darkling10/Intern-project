@@ -15,11 +15,7 @@ export async function setItem(item) {
   //   body: new URLSearchParams(item),
   // });
 
-  var urlencoded = new URLSearchParams();
-  urlencoded.append("name", "Abbas");
-  urlencoded.append("password", "po");
-  urlencoded.append("email", "abbas@redix.com");
-  urlencoded.append("phone", "90909090909");
+ 
 
   let url = "http://localhost:8080/users/add";
   var options = {
