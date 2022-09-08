@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "./FormLogin.module.css";
-import { setItem } from "../../services/getList";
+import { checkLogin, setItem } from "../../services/getList";
 import axios from "axios";
 
 const FormLogin = () => {
@@ -31,7 +31,7 @@ const FormLogin = () => {
       };
 
       try {
-        setItem(user);
+        checkLogin(inputField)
       } catch (e) {
         return e;
       }
