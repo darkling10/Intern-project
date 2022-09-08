@@ -20,7 +20,7 @@ export async function setItem(item) {
   let url = "http://localhost:8080/users/add";
   var options = {
     method: "post",
-    payload: urlencoded,
+    payload: item,
   };
   var response = fetch(url, options);
   return response;
