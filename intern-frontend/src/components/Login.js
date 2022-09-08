@@ -1,14 +1,13 @@
 import React from "react";
-import FormikLogin from "./Form/FormikLogin";
-import { Card } from "react-bootstrap";
-import NavbarUser from "./widget/Navbar";
 import FormLogin from "./Form/FormLogin";
+
+import NavbarUser from "./widget/Navbar";
 
 function Login() {
   return (
     <>
       <NavbarUser />
-      <FormikLogin />
+      <FormLogin />
     </>
   );
 }

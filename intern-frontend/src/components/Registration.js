@@ -1,6 +1,6 @@
 import React from "react";
 import FormRegistration from "../components/Form/FormRegistration";
-import FormDemo from "./Form/FormDemo";
+
 import NavbarUser from "./widget/Navbar";
 
 
