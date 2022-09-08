@@ -17,9 +17,7 @@ require("./config/db")
 
 //Middlewares
 app.use("/users", require("./routes/usersRoute"));
-app.use(express.urlencoded({
-  extended: true
-}));
+
 app.use(bodyParser.json())
 
 app.use(function(req, res, next) {

@@ -3,8 +3,10 @@ const userController = require("../controller/usersController");
 const route = express.Router();
 const bodyParser = require("body-parser");
 
-route.use(bodyParser.urlencoded({ extended: false }));
+// route.use(bodyParser.urlencoded({ extended: false }));
+route.use(express.json())
 var jwt = require("jsonwebtoken");
+const { application } = require("express");
 var token = "hjhgjhgjg ";
 
 const jwtAuth = (req, res, next) => {

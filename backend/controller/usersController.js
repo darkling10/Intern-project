@@ -11,14 +11,14 @@ const userList = async (req, res) => {
 var user;
 
 const userAdd = async (req, res) => {
-  let { name, email, phone, password } = req.body;
+  // let  = req.body;
   console.log(req.body);
   let data = new Users(req.body);
   let response = await data.save();
 
   let myToken = await data.getAuthToken();
 
-  res.status(200).json({ message: "ok", token: myToken });
+  res.status(200).json({ message: "ok" });
 };
 
 //USer Login

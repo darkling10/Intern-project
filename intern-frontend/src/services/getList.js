@@ -4,24 +4,29 @@ export async function getList() {
 }
 
 export async function setItem(item) {
-  // const data = await fetch("http://localhost:8080/users/add", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/x-www-form-urlencoded",
-  //     "Access-Control-Allow-Origin": "*",
-  //     'Connection': 'keep-alive',
-  //     'Accept': '*/*',
-  //   },
-  //   body: new URLSearchParams(item),
-  // });
+  const data = await fetch("http://localhost:8080/users/add", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      
+    },
+    body: JSON.stringify({
+      name:item.name,
+      email:item.email,
+      phone:item.phone,
+      password:item.password
 
- 
+    }),
+  });
 
-  let url = "http://localhost:8080/users/add";
-  var options = {
-    method: "post",
-    payload: item,
-  };
-  var response = fetch(url, options);
-  return response;
+  console.log(JSON.stringify({
+    name:item.name,
+    email:item.email,
+    phone:item.phone,
+    password:item.password
+
+  }))
+
+  
+  
 }
