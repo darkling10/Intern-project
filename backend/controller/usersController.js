@@ -13,12 +13,23 @@ var user;
 const userAdd = async (req, res) => {
   // let  = req.body;
   console.log(req.body);
-  let data = new Users(req.body);
+  try{
+  let data = new Users({
+    name:req.body.name,
+    email:req.body.email,
+    phone:req.body.phone,
+    password:req.body.password
+  });
   let response = await data.save();
-
   let myToken = await data.getAuthToken();
+  res.status(200).json({ message: "ok" ,token:myToken});
+}catch(error){
+  res,json({status:"error",error:"duplicate email"})
+}
 
-  res.status(200).json({ message: "ok" });
+  
+
+  
 };
 
 //USer Login

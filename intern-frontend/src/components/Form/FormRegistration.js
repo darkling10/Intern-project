@@ -12,7 +12,7 @@ const FormLogin = () => {
     cpassword: "",
   });
 
-  const [list, setList] = useState([]);
+  
 
   const [errorField, setErrorField] = useState({
     nameErr: "",
@@ -38,16 +38,14 @@ const FormLogin = () => {
         phone:inputField.phone,
         password:inputField.password
       }
-      console.log(user)
+      
       try {
-       axios.post("http://localhost:8080/users/add",user)
-       .then(response =>(
-        console.log(response)
-       ))
-       
-      } catch (e) {}
+       setItem(user)
+      } catch (e) {
+        return e;
+      }
     } else {
-      console.log("invalid");
+      console.log("invalid")
     }
   };
 

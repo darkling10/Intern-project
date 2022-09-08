@@ -25,8 +25,30 @@ export async function setItem(item) {
     phone:item.phone,
     password:item.password
 
-  }))
+  }))  
+}
 
-  
-  
+
+export async function checkLogin(item){
+  const data = await fetch("http://localhost:8080/users/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      
+    },
+    body: JSON.stringify({
+      
+      email:item.email,
+      password:item.password
+
+    }),
+  });
+
+  console.log(JSON.stringify({
+    
+    email:item.email,
+    
+    password:item.password
+
+  }))  
 }
