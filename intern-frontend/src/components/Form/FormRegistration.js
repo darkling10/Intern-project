@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "./FormRegistration.module.css";
+import { setItem } from "../../services/getList";
 import axios from "axios";
 
 const FormLogin = () => {
@@ -11,6 +12,8 @@ const FormLogin = () => {
     cpassword: "",
   });
 
+  const [list, setList] = useState([]);
+
   const [errorField, setErrorField] = useState({
     nameErr: "",
     emailErr: "",
@@ -18,6 +21,7 @@ const FormLogin = () => {
     passwordErr: "",
     cpasswordErr: "",
   });
+  
 
   const inputHandler = (event) => {
     setInputField({ ...inputField, [event.target.name]: event.target.value });
@@ -27,29 +31,20 @@ const FormLogin = () => {
     event.preventDefault();
     console.log(inputField);
     if (validForm(inputField)) {
-      let url = "http://localhost:8080/users/add";
-      let options = {
-        method: "POST",
-        mode: "no-cors",
-        url: url,
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        data: inputField,
-      };
-
+      
       try {
-        let response = await fetch("http://localhost:8080/users/add", {
-          method: "POST",
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          mode: "no-cors",
-          body: inputField,
-        });
-        // let response = await axios(options);
-        console.log(response);
+       await setItem(inputField)
+       .then(response =>(
+        console.log(response)
+       ))
+       
       } catch (e) {}
     } else {
       console.log("invalid");
     }
   };
+
+
 
   const validForm = (inputField) => {
     let formIsValid = true;
@@ -130,7 +125,9 @@ const FormLogin = () => {
 
   return (
     <>
-      <form className="form-control row" method="post" action="/users/add">
+    
+
+      <form className="form-control row" method="post" action="/login-user">
         <div style={{ margin: "auto", width: "60%" }}>
           <div className="form-group row">
             <label htmlFor="email">Email address</label>
