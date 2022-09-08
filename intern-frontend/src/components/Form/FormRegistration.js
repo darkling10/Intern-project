@@ -29,11 +29,18 @@ const FormLogin = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(inputField);
+    
     if (validForm(inputField)) {
-      
+
+      const user = {
+        name:inputField.name,
+        email:inputField.email,
+        phone:inputField.phone,
+        password:inputField.password
+      }
+      console.log(user)
       try {
-       await setItem(inputField)
+       axios.post("http://localhost:8080/users/add",user)
        .then(response =>(
         console.log(response)
        ))

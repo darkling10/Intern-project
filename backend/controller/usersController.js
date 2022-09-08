@@ -12,8 +12,8 @@ var user;
 
 const userAdd = async (req, res) => {
   let { name, email, phone, password } = req.body;
-  console.log(req.payload);
-  let data = new Users({ name, email, phone, password });
+  console.log(req.body);
+  let data = new Users(req.body);
   let response = await data.save();
 
   let myToken = await data.getAuthToken();
