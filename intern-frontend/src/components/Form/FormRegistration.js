@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./FormRegistration.module.css";
+import axios from "axios";
 
 const FormLogin = () => {
   const [inputField, setInputField] = useState({
@@ -22,19 +23,35 @@ const FormLogin = () => {
     setInputField({ ...inputField, [event.target.name]: event.target.value });
   };
 
-  const submitButton = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(inputField);
+    if (validForm(inputField)) {
+      let url = "http://localhost:8080/users/add";
+      let options = {
+        method: "POST",
+        mode: "no-cors",
+        url: url,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        data: inputField,
+      };
 
-    if (validForm()) {
-      console.log("valid");
+      try {
+        let response = await fetch("http://localhost:8080/users/add", {
+          method: "POST",
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          mode: "no-cors",
+          body: inputField,
+        });
+        // let response = await axios(options);
+        console.log(response);
+      } catch (e) {}
     } else {
       console.log("invalid");
     }
-
-    console.log(inputField);
   };
 
-  const validForm = () => {
+  const validForm = (inputField) => {
     let formIsValid = true;
 
     const validEmailRegex = RegExp(
@@ -112,103 +129,105 @@ const FormLogin = () => {
   };
 
   return (
-    <form className="form-control row">
-      <div style={{ margin: "auto", width: "60%" }}>
-        <div className="form-group row">
-          <label htmlFor="email">Email address</label>
-          <input
-            type="email"
-            name="email"
-            className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-            value={inputField.email}
-            onChange={inputHandler}
-            autoComplete="off"
-          />
-          {errorField.emailErr.length > 0 && (
-            <span className={classes.error}>{errorField.emailErr}</span>
-          )}
-          <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
-          </small>
-        </div>
-        <br></br>
-        <div className="form-group row">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            className="form-control"
-            id="name"
-            placeholder="Enter Name"
-            value={inputField.name}
-            onChange={inputHandler}
-          />
-          {errorField.nameErr.length > 0 && (
-            <span className={classes.error}>{errorField.nameErr}</span>
-          )}
-        </div>
-        <br></br>
-        <div className="form-group row">
-          <label htmlFor="phone">Phone Number</label>
-          <input
-            type="text"
-            name="phone"
-            className="form-control"
-            id="phone"
-            placeholder="Enter Phone Number"
-            value={inputField.phone}
-            onChange={inputHandler}
-          />
-          {errorField.phoneErr.length > 0 && (
-            <span className={classes.error}>{errorField.phoneErr}</span>
-          )}
-        </div>
-        <br></br>
-        <div className="form-group row">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            className="form-control"
-            id="password"
-            placeholder="Enter Confirm Password"
-            value={inputField.password}
-            onChange={inputHandler}
-          />
-          {errorField.passwordErr.length > 0 && (
-            <span className={classes.error}>{errorField.passwordErr}</span>
-          )}
-        </div>
-        <br></br>
-        <div className="form-group row">
-          <label htmlFor="cpassword">Confirm Password</label>
-          <input
-            type="cpassword"
-            name="cpassword"
-            className="form-control"
-            id="cpassword"
-            placeholder="Enter Confirm Password"
-            value={inputField.cpassword}
-            onChange={inputHandler}
-          />
-          {errorField.cpasswordErr.length > 0 && (
-            <span className={classes.error}>{errorField.cpasswordErr}</span>
-          )}
-        </div>
+    <>
+      <form className="form-control row" method="post" action="/users/add">
+        <div style={{ margin: "auto", width: "60%" }}>
+          <div className="form-group row">
+            <label htmlFor="email">Email address</label>
+            <input
+              type="email"
+              name="email"
+              className="form-control"
+              id="email"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              value={inputField.email}
+              onChange={inputHandler}
+              autoComplete="off"
+            />
+            {errorField.emailErr.length > 0 && (
+              <span className={classes.error}>{errorField.emailErr}</span>
+            )}
+            <small id="emailHelp" className="form-text text-muted">
+              We'll never share your email with anyone else.
+            </small>
+          </div>
+          <br></br>
+          <div className="form-group row">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              name="name"
+              className="form-control"
+              id="name"
+              placeholder="Enter Name"
+              value={inputField.name}
+              onChange={inputHandler}
+            />
+            {errorField.nameErr.length > 0 && (
+              <span className={classes.error}>{errorField.nameErr}</span>
+            )}
+          </div>
+          <br></br>
+          <div className="form-group row">
+            <label htmlFor="phone">Phone Number</label>
+            <input
+              type="text"
+              name="phone"
+              className="form-control"
+              id="phone"
+              placeholder="Enter Phone Number"
+              value={inputField.phone}
+              onChange={inputHandler}
+            />
+            {errorField.phoneErr.length > 0 && (
+              <span className={classes.error}>{errorField.phoneErr}</span>
+            )}
+          </div>
+          <br></br>
+          <div className="form-group row">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              id="password"
+              placeholder="Enter Confirm Password"
+              value={inputField.password}
+              onChange={inputHandler}
+            />
+            {errorField.passwordErr.length > 0 && (
+              <span className={classes.error}>{errorField.passwordErr}</span>
+            )}
+          </div>
+          <br></br>
+          <div className="form-group row">
+            <label htmlFor="cpassword">Confirm Password</label>
+            <input
+              type="cpassword"
+              name="cpassword"
+              className="form-control"
+              id="cpassword"
+              placeholder="Enter Confirm Password"
+              value={inputField.cpassword}
+              onChange={inputHandler}
+            />
+            {errorField.cpasswordErr.length > 0 && (
+              <span className={classes.error}>{errorField.cpasswordErr}</span>
+            )}
+          </div>
 
-        <br></br>
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={submitButton}
-        >
-          Submit
-        </button>
-      </div>
-    </form>
+          <br></br>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 

@@ -10,7 +10,7 @@ const FormLogin = () => {
   };
 
   return (
-    <form className="form-control row">
+    <form className="form-control row" onSubmit={submitHandler}>
       <div style={{ margin: "auto", width: "60%" }}>
         <div className="form-group row">
           <label htmlFor="email">Email address</label>

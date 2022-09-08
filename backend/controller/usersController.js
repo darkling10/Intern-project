@@ -12,7 +12,13 @@ var user;
 
 const userAdd = async (req, res) => {
   let { name, email, phone, password } = req.body;
-  let data = new Users({ name, email, phone, password });
+  console.log(req.body);
+  let data = new Users({
+    name: req.body.name,
+    email: req.body.email,
+    phone :req.body.phone,
+    password :req.body.password,
+  });
   let response = await data.save();
 
   let myToken = await data.getAuthToken();
@@ -40,7 +46,7 @@ const userLogin = async (req, res) => {
     if (match) {
       let myToken = await user.getAuthToken();
       responseType.message = "Login Successful";
-      responseType.token = myToken
+      responseType.token = myToken;
     } else {
       responseType.token = "ok";
     }
@@ -51,15 +57,15 @@ const userLogin = async (req, res) => {
   res.status(200).json({ message: "ok", data: responseType });
 };
 
-const userLogout =(req,res)=>{
+const userLogout = (req, res) => {
   // user.tokens = user.tokens.filter()
-  console.log(user)
-}
+  console.log(user);
+};
 
 // Exporting all the functions
 module.exports = {
   userList,
   userAdd,
   userLogin,
-  userLogout
+  userLogout,
 };
