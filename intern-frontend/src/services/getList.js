@@ -35,3 +35,21 @@ export async function checkLogin(item) {
 
   return await data.json();
 }
+
+
+export async function getData() {
+  const data = await fetch("http://localhost:8080/users/list", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin":"*",
+      "Access-Control-Request-Headers":"x-access-tpken",
+      "origin":"http://localhost:3000",
+      "x-access-token": `Bearer ${localStorage.getItem("token")}`,
+    },
+    
+  })
+    
+
+  return await data.json();
+}

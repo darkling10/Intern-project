@@ -1,9 +1,11 @@
 const express = require("express");
 const Users = require("../models/users");
 var bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken')
 
 //Showing the list of Users
 const userList = async (req, res) => {
+  
   let data = await Users.find();
   res.json(data);
 };

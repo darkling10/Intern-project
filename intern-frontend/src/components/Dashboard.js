@@ -2,16 +2,13 @@ import React, { useEffect } from "react";
 // import jwt from "jsonwebtoken"
 import { useNavigate } from "react-router-dom";
 import Buffer from "buffer";
+import { getData } from "../services/getList";
 
 const Dashboard = () => {
   const history = useNavigate();
 
   const populateQuote = async () => {
-    const req = await fetch("http://localhost:8080/users/list", {
-      headers: {
-        "x-access-token": `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
+    const req = await getData();
     console.log(req);
   };
 
@@ -35,15 +32,19 @@ const Dashboard = () => {
     const token = localStorage.getItem("token");
     if (token) {
       const user = parseJwt(token);
-      console.log(user);
+
       if (!user) {
         localStorage.removeItem("token");
-        history.replace("/login");
+        console("test not loh")
+        history("/login", { replace: true });
       } else {
+        console("test")
         populateQuote();
       }
     }
   }, []);
+
+  
 
   return <div>Dashboard</div>;
 };
