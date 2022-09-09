@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Buffer from "buffer";
 import { getData } from "../services/getList";
+import Navbar from '../components/widget/Navbar'
 
 const Dashboard = () => {
   const history = useNavigate();
@@ -35,20 +36,26 @@ const Dashboard = () => {
 
       if (!user) {
         localStorage.removeItem("token");
-        
       } else {
-        console.log("test")
+        console.log("test");
         populateQuote();
       }
-    }else{
-      console.log("test not loh")
+    } else {
+      console.log("test not loh");
       history("/login", { replace: true });
     }
   }, []);
 
+
   
 
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <Navbar showLogout={true}/>
+      <h1>Dashboard</h1>
+
+    </div>
+  );
 };
 
 export default Dashboard;

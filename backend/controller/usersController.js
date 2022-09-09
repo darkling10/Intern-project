@@ -56,7 +56,8 @@ const userLogin = async (req, res) => {
       responseType.message = "Login Successful";
       responseType.token = myToken;
     } else {
-      responseType.token = "ok";
+      responseType.message = "Not";
+      responseType.error = true;
     }
   } else {
     responseType.message = "Invalid Email ID";

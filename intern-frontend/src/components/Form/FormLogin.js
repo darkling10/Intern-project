@@ -32,10 +32,11 @@ const FormLogin = () => {
 
       try {
        const response =  await checkLogin(inputField);
+       console.log(response.message)
        if(response.data.token){
           localStorage.setItem('token',response.data.token)
           window.location.href = '/dashboard'
-       }else{
+       }else {
         alert("Check email and password")
        }
       } catch (e) {

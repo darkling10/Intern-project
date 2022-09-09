@@ -7,7 +7,7 @@ import NavbarUser from "./widget/Navbar";
 function Registration() {
   return (
     <>
-      <NavbarUser />
+      <NavbarUser showLogout={false} showLogin={true}/>
       <FormRegistration/>
     </>
   );

@@ -6,7 +6,7 @@ import NavbarUser from "./widget/Navbar";
 function Login() {
   return (
     <>
-      <NavbarUser />
+      <NavbarUser showLogout={false} showLogin={false} />
       <FormLogin />
     </>
   );
