@@ -35,12 +35,14 @@ const Dashboard = () => {
 
       if (!user) {
         localStorage.removeItem("token");
-        console("test not loh")
-        history("/login", { replace: true });
+        
       } else {
-        console("test")
+        console.log("test")
         populateQuote();
       }
+    }else{
+      console.log("test not loh")
+      history("/login", { replace: true });
     }
   }, []);
 
