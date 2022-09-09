@@ -2,9 +2,11 @@ const express = require("express");
 const userController = require("../controller/usersController");
 const route = express.Router();
 const bodyParser = require("body-parser");
+const cors = require('cors')
 
 // route.use(bodyParser.urlencoded({ extended: false }));
 route.use(express.json())
+route.use(cors)
 var jwt = require("jsonwebtoken");
 const { application } = require("express");
 var token = "hjhgjhgjg ";
@@ -22,7 +24,7 @@ const jwtAuth = (req, res, next) => {
 };
 
 function authenticateToken(req, res, next) {
-    const authHeader = req.headers['authorization']
+    const authHeader = req.headers['x-access-token']
     const token = authHeader && authHeader.split(' ')[1]
     if (token == null) return res.sendStatus(401)
   
