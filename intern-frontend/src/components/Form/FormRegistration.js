@@ -40,7 +40,8 @@ const FormLogin = () => {
       }
       
       try {
-       setItem(user)
+       const data = await setItem(user)
+       console.log(data)
       } catch (e) {
         return e;
       }

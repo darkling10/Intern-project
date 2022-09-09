@@ -31,7 +31,13 @@ const FormLogin = () => {
       };
 
       try {
-        checkLogin(inputField)
+       const response =  await checkLogin(inputField);
+       if(response.data.token){
+          localStorage.setItem('token',response.data.token)
+          window.location.href = '/'
+       }else{
+        alert("Check email and password")
+       }
       } catch (e) {
         return e;
       }
